@@ -21,7 +21,7 @@
         android:paddingRight="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_button_register" />
+        app:layout_constraintTop_toBottomOf="@+id/selectPhoto_button_register" />
 
     <EditText
         android:id="@+id/email_text_register"
@@ -79,7 +79,7 @@
         app:layout_constraintTop_toBottomOf="@+id/register_button_register" />
 
     <Button
-        android:id="@+id/image_button_register"
+        android:id="@+id/selectPhoto_button_register"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="32dp"
