@@ -9,11 +9,9 @@
 
     <EditText
         android:id="@+id/userName_text_register"
-        android:layout_width="0dp"
+        android:layout_width="347dp"
         android:layout_height="50dp"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
         android:autofillHints=""
         android:background="@drawable/rounded_text_register"
         android:ems="10"
@@ -23,7 +21,7 @@
         android:paddingRight="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/image_button_register" />
 
     <EditText
         android:id="@+id/email_text_register"
@@ -61,8 +59,8 @@
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_button"
-        android:textStyle="bold"
         android:text="Register"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/password_text_register"
         app:layout_constraintStart_toStartOf="@+id/password_text_register"
         app:layout_constraintTop_toBottomOf="@+id/password_text_register" />
@@ -79,5 +77,18 @@
         app:layout_constraintEnd_toEndOf="@+id/register_button_register"
         app:layout_constraintStart_toStartOf="@+id/register_button_register"
         app:layout_constraintTop_toBottomOf="@+id/register_button_register" />
+
+    <Button
+        android:id="@+id/image_button_register"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/full_rounded_button"
+        android:text="Select photo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
