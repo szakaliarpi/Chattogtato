@@ -43,11 +43,13 @@ class MainActivity : AppCompatActivity() {
 
         //Firebase authentication to create a user with email and password
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+
             .addOnCompleteListener {
                 if (!it.isSuccessful){
                     Log.d("Main", "ERROR")
                     return@addOnCompleteListener
                 }
+
                 val result = it.result
                 if(result != null){
                     val user = result.user
@@ -55,13 +57,16 @@ class MainActivity : AppCompatActivity() {
                         val uid = user.uid
                         if(uid != null) {
                             Log.d("Main", "created: $uid")
+                            Toast.makeText(this, "Account created. ${it.toString()}", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
             }
+
             .addOnFailureListener {
                 Log.d("Main", "Fail to create user: ${it.message}")
                 Toast.makeText(this, "Incorrect email or password: ${it.message}", Toast.LENGTH_SHORT).show()
             }
+
     }
 }
