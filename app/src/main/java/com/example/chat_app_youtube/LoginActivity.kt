@@ -1,10 +1,12 @@
 package com.example.chat_app_youtube
 
 import android.os.Bundle
-import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
+
+import android.util.Log
+import android.content.Intent
 
 class LoginActivity: AppCompatActivity(){
 
@@ -17,8 +19,12 @@ class LoginActivity: AppCompatActivity(){
             performLogin()
         }
 
-        backToRegister_text_login.setOnClickListener {
-            finish()
+        goToRegister_text_login.setOnClickListener {
+            Log.d("LoginActivity", "try to show registration activity")
+
+            //launch the login activity
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -26,12 +32,12 @@ class LoginActivity: AppCompatActivity(){
         val email = email_text_login.text.toString()
         val password = password_text_login.text.toString()
 
-        Log.d("Login", "Attempt login with email/pw: $email/***")
+        Log.d("LoginActivity", "Attempt login with email/pw: $email/***")
 
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(){
                 if (!it.isSuccessful){
-                    Log.d("'Login", "ERROR")
+                    Log.d("LoginActivity", "ERROR")
                 }
 
             }
