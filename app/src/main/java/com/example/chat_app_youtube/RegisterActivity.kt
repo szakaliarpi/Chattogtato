@@ -22,10 +22,6 @@ class RegisterActivity : AppCompatActivity() {
 
         register_button_register.setOnClickListener {
             performRegister()
-            /*FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener{
-                    if (!it.isSuccessful ) return@addOnCompleteListener
-                }*/
         }
 
         alreadyHave_text_registration.setOnClickListener {
@@ -79,8 +75,7 @@ class RegisterActivity : AppCompatActivity() {
 
                 Log.d("RegisterActivity", "ERROR")
 
-                //uploadImageToFirebaseStorage()
-
+                uploadImageToFirebaseStorage()
 
 
                 val result = it.result
@@ -103,12 +98,12 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-    /*private fun uploadImageToFirebaseStorage(){
+    private fun uploadImageToFirebaseStorage(){
 
         if(selectedPhotoUri == null) return
 
         val filename = UUID.randomUUID().toString()
-        val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
+        val ref = fire
 
         ref.putFile(selectedPhotoUri!!)
             .addOnSuccesListener{
@@ -137,8 +132,7 @@ class RegisterActivity : AppCompatActivity() {
                 Log.d("register activity", "saved user to database")
             }
     }
-    //todo 28:00 3. video
-*/
+
 }
 
-//class User(val uid: String, val username: String, val profileImageUrl: String)
+class User(val uid: String, val username: String, val profileImageUrl: String)
