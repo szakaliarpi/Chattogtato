@@ -22,6 +22,10 @@ class RegisterActivity : AppCompatActivity() {
 
         register_button_register.setOnClickListener {
             performRegister()
+            /*FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener{
+                    if (!it.isSuccessful ) return@addOnCompleteListener
+                }*/
         }
 
         alreadyHave_text_registration.setOnClickListener {
@@ -75,7 +79,7 @@ class RegisterActivity : AppCompatActivity() {
 
                 Log.d("RegisterActivity", "ERROR")
 
-                uploadImageToFirebaseStorage()
+                //uploadImageToFirebaseStorage()
 
 
 
@@ -99,7 +103,7 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-    private fun uploadImageToFirebaseStorage(){
+    /*private fun uploadImageToFirebaseStorage(){
 
         if(selectedPhotoUri == null) return
 
@@ -134,7 +138,7 @@ class RegisterActivity : AppCompatActivity() {
             }
     }
     //todo 28:00 3. video
-
+*/
 }
 
-class User(val uid: String, val username: String, val profileImageUrl: String)
+//class User(val uid: String, val username: String, val profileImageUrl: String)

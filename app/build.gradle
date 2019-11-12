@@ -39,6 +39,7 @@ dependencies {
 
     //copied Firebase authatication link
     implementation 'com.google.firebase:firebase-auth:19.1.0'
+
     implementation 'com.google.firebase:firebase-analytics:17.2.0'
 
 
