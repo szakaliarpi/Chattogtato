@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "733728280897",
-    "firebase_url": "https://chatapp-67b5e.firebaseio.com",
-    "project_id": "chatapp-67b5e",
-    "storage_bucket": "chatapp-67b5e.appspot.com"
+    "project_number": "1066131088525",
+    "firebase_url": "https://chattogtatosdb.firebaseio.com",
+    "project_id": "chattogtatosdb",
+    "storage_bucket": "chattogtatosdb.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:733728280897:android:d785d4ea1a53ac4a5191c0",
+        "mobilesdk_app_id": "1:1066131088525:android:81d84c3ae71d1801c0eec4",
         "android_client_info": {
           "package_name": "com.example.chat_app_youtube"
         }
       },
       "oauth_client": [
         {
-          "client_id": "733728280897-e2qgm1fceck6f1e0nvd929co4bl4f9b0.apps.googleusercontent.com",
+          "client_id": "1066131088525-c7g4956e2omviqfumiqis29tun774v7q.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC8QkCOO2olLb5VvIvronl0_ee8T9JZlVI"
+          "current_key": "AIzaSyAmLPQg9AYAbvCMjGjirFu6O1vFntRLfqk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "733728280897-e2qgm1fceck6f1e0nvd929co4bl4f9b0.apps.googleusercontent.com",
+              "client_id": "1066131088525-c7g4956e2omviqfumiqis29tun774v7q.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
