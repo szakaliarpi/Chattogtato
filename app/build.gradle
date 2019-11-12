@@ -39,14 +39,11 @@ dependencies {
 
     //copied Firebase authatication link
     implementation 'com.google.firebase:firebase-auth:19.1.0'
-
     implementation 'com.google.firebase:firebase-analytics:17.2.1'
-
     implementation 'com.google.firebase:firebase-storage:19.1.0'
-
     implementation 'com.google.firebase:firebase-database:19.1.0'
 
-
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
 }
 
 //copied Firebase connection "apply plugin"

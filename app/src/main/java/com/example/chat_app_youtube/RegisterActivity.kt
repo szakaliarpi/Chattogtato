@@ -12,6 +12,8 @@ import kotlinx.android.synthetic.main.activity_register.*
 
 import android.util.Log
 import android.widget.Toast
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -50,9 +52,11 @@ class RegisterActivity : AppCompatActivity() {
 
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
 
-            val bitmapDrawable = BitmapDrawable(bitmap)
+            selectphoto_imageview_register.setImageBitmap(bitmap)
 
-            selectPhoto_button_register.setBackgroundDrawable(bitmapDrawable)
+            selectphoto_imageview_register.alpha = 0f
+            //val bitmapDrawable = BitmapDrawable(bitmap)
+            //selectPhoto_button_register.setBackgroundDrawable(bitmapDrawable)
         }
     }
     private fun performRegister(){
@@ -103,19 +107,21 @@ class RegisterActivity : AppCompatActivity() {
         if(selectedPhotoUri == null) return
 
         val filename = UUID.randomUUID().toString()
-        val ref = fire
+        val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
 
         ref.putFile(selectedPhotoUri!!)
-            .addOnSuccesListener{
+            .addOnSuccessListener{
                 Log.d("Register", "Image chosen ${it.metadata?.path}")
 
-                ref.downloadUrl.addOnSuccesListener{
+                ref.downloadUrl.addOnSuccessListener{
                     //it.toString()
                     Log.d("Register Act", "file loc:$it ")
 
                     saveUserToFirebaseDatabase(it.toString())
-
                 }
+
+            }
+            .addOnFailureListener {
 
             }
     }
@@ -128,7 +134,7 @@ class RegisterActivity : AppCompatActivity() {
         val user = User(uid, userName_text_register.text.toString(), profileImageUrl)
 
         ref.setValue(user)
-            .addOnSuccesListener{
+            .addOnSuccessListener{
                 Log.d("register activity", "saved user to database")
             }
     }
