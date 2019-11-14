@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Chattogtato</string>
+    <string name="email_text_login">E-mail</string>
+    <string name="password_text_login">Password</string>
+    <string name="login_button_login">Login</string>
+    <string name="goToRegister_text_login">Go to registration</string>
+
+    <string name="selectphoto_imageview_register">Select photo</string>
+    <string name="userName_text_register">Name</string>
+    <string name="password_text_register">Password</string>
+    <string name="register_button_register">Register</string>
+    <string name="alreadyHave_text_registration">Already have an account?</string>
+    <string name="email_text_register">E-mail</string>
 </resources>
