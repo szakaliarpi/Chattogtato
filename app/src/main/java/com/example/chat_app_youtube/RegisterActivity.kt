@@ -47,16 +47,21 @@ class RegisterActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if(requestCode == 0 && resultCode == Activity.RESULT_OK && data != null){
+            //proceed and check what the selected image was...
             Log.d("RegisterActivity", "Photo was selected")
+
             selectedPhotoUri = data.data
 
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
 
-            selectphoto_imageview_register.setImageBitmap(bitmap)
+            //selectphoto_imageview_register.setImageBitmap(bitmap)
 
-            selectphoto_imageview_register.alpha = 0f
             val bitmapDrawable = BitmapDrawable(bitmap)
             selectPhoto_button_register.setBackgroundDrawable(bitmapDrawable)
+
+            //selectphoto_imageview_register.alpha = 0f
+
+
         }
     }
     private fun performRegister(){

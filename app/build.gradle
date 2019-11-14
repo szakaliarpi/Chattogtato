@@ -33,17 +33,20 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-
-
     //copied Firebase connection App-level buld.gradle dependencies
+    implementation 'com.google.firebase:firebase-analytics:17.2.0'
 
     //copied Firebase authatication link
     implementation 'com.google.firebase:firebase-auth:19.1.0'
-    implementation 'com.google.firebase:firebase-analytics:17.2.1'
+
+    //copied Firebase storage link
     implementation 'com.google.firebase:firebase-storage:19.1.0'
+
+    //database link, not copied, the same version as firebase-storage
     implementation 'com.google.firebase:firebase-database:19.1.0'
 
-    implementation 'de.hdodenhof:circleimageview:3.0.1'
+    //implementation 'com.google.firebase:firebase-analytics:17.2.1'
+    //implementation 'de.hdodenhof:circleimageview:3.0.1'
 }
 
 //copied Firebase connection "apply plugin"
