@@ -20,9 +20,9 @@ class LoginActivity: AppCompatActivity(){
         }
 
         goToRegister_text_login.setOnClickListener {
-            Log.d("LoginActivity", "try to show registration activity")
+            Log.d("LoginActivity", "Try to show register activity")
 
-            //launch the login activity
+            //launch the register activity
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }

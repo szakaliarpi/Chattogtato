@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Chattogtato</string>
+    <string name="name_app_login">Chattogtato</string>
     <string name="email_text_login">E-mail</string>
     <string name="password_text_login">Password</string>
     <string name="login_button_login">Login</string>

@@ -111,16 +111,17 @@ class RegisterActivity : AppCompatActivity() {
 
         if(selectedPhotoUri == null) return
 
+        //random id to image
         val filename = UUID.randomUUID().toString()
         val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
 
         ref.putFile(selectedPhotoUri!!)
             .addOnSuccessListener{
-                Log.d("Register", "Image chosen ${it.metadata?.path}")
+                Log.d("RegisterActivity", "Successfully uploaded image ${it.metadata?.path}")
 
                 ref.downloadUrl.addOnSuccessListener{
                     //it.toString()
-                    Log.d("Register Act", "file loc:$it ")
+                    Log.d("RegisterActivity", "file loc:$it ")
 
                     saveUserToFirebaseDatabase(it.toString())
                 }
