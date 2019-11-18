@@ -1,26 +1,35 @@
 package com.example.chat_app_youtube
 
 import android.app.Activity
+import android.content.ContentValues
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import com.google.firebase.auth.FirebaseAuth
-import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_register.*
-
 import android.util.Log
+import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import kotlinx.android.synthetic.main.activity_register.*
+import java.io.File
+import java.io.IOException
 import java.util.*
+
 
 class RegisterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+
+        externalFileStoragePath = this.getExternalFilesDir(null).toString() + "/images/"
+        storageRef = FirebaseStorage.getInstance().getReference()
+        selectPhoto_button_register.visibility = View.VISIBLE
 
         register_button_register.setOnClickListener {
             performRegister()
@@ -41,7 +50,10 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    final var TAG: String = "RegisterActivity"
     var selectedPhotoUri: Uri? = null
+    var externalFileStoragePath: String = ""
+    var storageRef: StorageReference? = null
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -51,16 +63,30 @@ class RegisterActivity : AppCompatActivity() {
             Log.d("RegisterActivity", "Photo was selected")
 
             selectedPhotoUri = data.data
+            saveToExternalStorage(selectedPhotoUri.toString())
 
-            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
+            val imgView = selectphoto_imageview_register as ImageView
 
-            //selectphoto_imageview_register.setImageBitmap(bitmap)
+            imgView.setImageURI(Uri.parse(selectedPhotoUri.toString()))
 
-            val bitmapDrawable = BitmapDrawable(bitmap)
-            selectPhoto_button_register.setBackgroundDrawable(bitmapDrawable)
+//            val bitmap = BitmapFactory.decodeFile(selectedPhotoUri.toString())
+//            //val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
+//            selectphoto_imageview_register.setImageBitmap(bitmap)
+//
+//            val bitmapDrawable = BitmapDrawable(bitmap)
+//            selectphoto_imageview_register.setBackgroundDrawable(bitmapDrawable)
+//            selectphoto_imageview_register.visibility = View.VISIBLE
+            selectPhoto_button_register.visibility = View.GONE
 
             //selectphoto_imageview_register.alpha = 0f
 
+//            val bitmap = BitmapFactory.decodeFile(selectedPhotoUri.toString())
+//            // Load image using Glide
+//            Glide.with(this)
+//                .load(Uri.fromFile(File(selectedPhotoUri.toString())))
+//                .circleCrop()
+//                .error(R.drawable.ic_error_black_24dp)
+//                .into(this.findViewById(R.id.selectphoto_imageview_register))
 
         }
     }
@@ -127,10 +153,15 @@ class RegisterActivity : AppCompatActivity() {
                 }
 
             }
-            .addOnFailureListener {
-
+            .addOnFailureListener{
+                Log.e(TAG,"Cannot upload file to Firebase Storage:" + it.message)
+            }
+            .addOnCanceledListener {
+                Log.e(TAG,"File upload cancelled")
             }
     }
+
+
 
     private fun saveUserToFirebaseDatabase(profileImageUrl: String){
 
@@ -147,6 +178,27 @@ class RegisterActivity : AppCompatActivity() {
                 startActivity(intent)*/
             }
     }
+
+    private fun saveToExternalStorage(filePath: String){
+        var fromFile = File(filePath)
+        var toFileName = "picture"
+        var toFile = File(externalFileStoragePath)
+        toFile.mkdirs()
+
+        try {
+            fromFile.copyTo(toFile,true)
+            val values = ContentValues()
+            values.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis())
+            values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+            values.put(MediaStore.MediaColumns.DATA, toFile.toString() + "/" + toFileName)
+            this.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+
+
+
 
 }
 

@@ -1,12 +1,13 @@
 package com.example.chat_app_youtube
 
-import android.os.Bundle
-import com.google.firebase.auth.FirebaseAuth
-import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_login.*
-
-import android.util.Log
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity: AppCompatActivity(){
 
@@ -14,6 +15,8 @@ class LoginActivity: AppCompatActivity(){
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_login)
+
+        requestAllPermissions()
 
         login_button_login.setOnClickListener {
             performLogin()
@@ -41,5 +44,16 @@ class LoginActivity: AppCompatActivity(){
                 }
 
             }
+    }
+
+    private fun requestAllPermissions(){
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.INTERNET)
+            != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted
+        }
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted
+        }
     }
 }
