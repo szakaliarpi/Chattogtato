@@ -69,6 +69,7 @@ class RegisterActivity : AppCompatActivity() {
 
             imgView.setImageURI(Uri.parse(selectedPhotoUri.toString()))
 
+//            bitmap thing
 //            val bitmap = BitmapFactory.decodeFile(selectedPhotoUri.toString())
 //            //val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
 //            selectphoto_imageview_register.setImageBitmap(bitmap)
@@ -81,7 +82,7 @@ class RegisterActivity : AppCompatActivity() {
             //selectphoto_imageview_register.alpha = 0f
 
 //            val bitmap = BitmapFactory.decodeFile(selectedPhotoUri.toString())
-//            // Load image using Glide
+//            // Load image using Glide very useful
 //            Glide.with(this)
 //                .load(Uri.fromFile(File(selectedPhotoUri.toString())))
 //                .circleCrop()
@@ -118,10 +119,8 @@ class RegisterActivity : AppCompatActivity() {
                     val user = result.user
                     if(user != null){
                         val uid = user.uid
-                        if(uid != null) {
-                            Log.d("RegisterActivity", "created: $uid")
-                            Toast.makeText(this, "Account created. ${it.toString()}", Toast.LENGTH_SHORT).show()
-                        }
+                        Log.d("RegisterActivity", "created: $uid")
+                        Toast.makeText(this, "Account created. ${it.toString()}", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
