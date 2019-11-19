@@ -4,7 +4,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
@@ -23,7 +22,7 @@ class LoginActivity: AppCompatActivity(){
             performLogin()
         }
 
-        goToRegister_text_login.setOnClickListener {
+        goToRegister_textView_login.setOnClickListener {
             Log.d("LoginActivity", "Try to show register activity")
 
             //launch the register activity
@@ -33,12 +32,12 @@ class LoginActivity: AppCompatActivity(){
     }
 
     private fun performLogin(){
-        val email = email_text_login.text.toString()
-        val password = password_text_login.text.toString()
+        val email = email_textBox_login.text.toString()
+        val password = password_textBox_login.text.toString()
 
         if(email.isEmpty() || password.isEmpty()){
-            Toast.makeText(this, "Email or password is empty", Toast.LENGTH_SHORT).show()
             Log.d("LoginActivity", "Email or password is empty.")
+            //Toast.makeText(this, "Email or password is empty", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -48,18 +47,18 @@ class LoginActivity: AppCompatActivity(){
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(){
                 if (!it.isSuccessful){
-                    Toast.makeText(this, "Couldn't login successfully", Toast.LENGTH_SHORT).show()
                     Log.d("LoginActivity", "Couldn't login successfully")
+                    //Toast.makeText(this, "Couldn't login successfully", Toast.LENGTH_SHORT).show()
                     return@addOnCompleteListener
                 }
 
                 Log.d("LoginActivity", "Login successfully")
-                Toast.makeText(this, "Login successfully", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "Login successfully", Toast.LENGTH_SHORT).show()
             }
 
             .addOnFailureListener(){
-                Toast.makeText(this, "Failed to login", Toast.LENGTH_SHORT).show()
                 Log.d("LoginActivity", "Failed to login")
+                //Toast.makeText(this, "Failed to login", Toast.LENGTH_SHORT).show()
                 return@addOnFailureListener
             }
     }

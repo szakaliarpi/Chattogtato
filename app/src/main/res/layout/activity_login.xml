@@ -9,7 +9,7 @@
     tools:context=".LoginActivity">
 
     <EditText
-        android:id="@+id/email_text_login"
+        android:id="@+id/email_textBox_login"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="32dp"
@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/password_text_login"
+        android:id="@+id/password_textBox_login"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="32dp"
@@ -37,10 +37,10 @@
         android:importantForAutofill="no"
         android:inputType="textPassword"
         android:paddingStart="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/email_text_login"
+        app:layout_constraintEnd_toEndOf="@+id/email_textBox_login"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/email_text_login"
-        app:layout_constraintTop_toBottomOf="@+id/email_text_login" />
+        app:layout_constraintStart_toStartOf="@+id/email_textBox_login"
+        app:layout_constraintTop_toBottomOf="@+id/email_textBox_login" />
 
     <Button
         android:id="@+id/login_button_login"
@@ -49,13 +49,13 @@
         android:layout_marginTop="32dp"
         android:background="@drawable/rounded_button"
         android:text="@string/login_button_login"
-        app:layout_constraintEnd_toEndOf="@+id/password_text_login"
+        app:layout_constraintEnd_toEndOf="@+id/password_textBox_login"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/password_text_login"
-        app:layout_constraintTop_toBottomOf="@+id/password_text_login" />
+        app:layout_constraintStart_toStartOf="@+id/password_textBox_login"
+        app:layout_constraintTop_toBottomOf="@+id/password_textBox_login" />
 
     <TextView
-        android:id="@+id/goToRegister_text_login"
+        android:id="@+id/goToRegister_textView_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
