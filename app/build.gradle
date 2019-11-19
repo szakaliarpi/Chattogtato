@@ -45,7 +45,6 @@ dependencies {
     //database link, not copied, the same version as firebase-storage
     implementation 'com.google.firebase:firebase-database:19.1.0'
 
-    //implementation 'com.google.firebase:firebase-analytics:17.2.1'
     implementation 'de.hdodenhof:circleimageview:3.0.1'
 
     // Glide image loader

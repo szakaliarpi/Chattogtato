@@ -37,7 +37,6 @@ class RegisterActivity : AppCompatActivity() {
 
         alreadyHave_text_registration.setOnClickListener {
             Log.d("RegisterActivity", "Close registration activity")
-
             finish()
         }
 
@@ -96,7 +95,8 @@ class RegisterActivity : AppCompatActivity() {
         val password = password_text_register.text.toString()
 
         if(email.isEmpty() || password.isEmpty()){
-            Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
+            Log.d("RegisterActivity", "Email or password is empty")
+            Toast.makeText(this, "Please enter text in email/password", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -109,25 +109,17 @@ class RegisterActivity : AppCompatActivity() {
             .addOnCompleteListener {
                 if (!it.isSuccessful) return@addOnCompleteListener
 
-                Log.d("RegisterActivity", "ERROR")
+                //else if successful
+                Log.d("RegisterActivity", "Successfully created user with uid: ${it.result?.user?.uid}")
+                Toast.makeText(this, "Successfully created user", Toast.LENGTH_SHORT).show()
 
                 uploadImageToFirebaseStorage()
-
-
-                val result = it.result
-                if(result != null){
-                    val user = result.user
-                    if(user != null){
-                        val uid = user.uid
-                        Log.d("RegisterActivity", "created: $uid")
-                        Toast.makeText(this, "Account created. ${it.toString()}", Toast.LENGTH_SHORT).show()
-                    }
-                }
             }
 
-            .addOnFailureListener {
-                Log.d("RegisterActivity", "Fail to create user: ${it.message}")
-                Toast.makeText(this, "Incorrect email or password: ${it.message}", Toast.LENGTH_SHORT).show()
+            .addOnFailureListener{
+                Log.d("RegisterActivity", "Failed to create user: ${it.message}")
+                Toast.makeText(this, "Failed to create user: ${it.message}", Toast.LENGTH_SHORT).show()
+                return@addOnFailureListener
             }
 
     }
@@ -146,15 +138,16 @@ class RegisterActivity : AppCompatActivity() {
 
                 ref.downloadUrl.addOnSuccessListener{
                     //it.toString()
-                    Log.d("RegisterActivity", "file loc:$it ")
+                    Log.d("RegisterActivity", "File location: $it")
 
                     saveUserToFirebaseDatabase(it.toString())
                 }
-
             }
+
             .addOnFailureListener{
                 Log.e(TAG,"Cannot upload file to Firebase Storage:" + it.message)
             }
+
             .addOnCanceledListener {
                 Log.e(TAG,"File upload cancelled")
             }
@@ -175,6 +168,10 @@ class RegisterActivity : AppCompatActivity() {
                 val intent = Intent(this, LatestMessagesActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)*/
+            }
+
+            .addOnFailureListener(){
+                Log.d("RegisterActivity", "Failed to save data in Firebase database")
             }
     }
 

@@ -5,7 +5,7 @@
     android:id="@+id/name_app_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#59487C"
+    android:background="#363E6D"
     tools:context=".RegisterActivity">
 
     <EditText
@@ -29,7 +29,7 @@
         android:id="@+id/email_text_register"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/rounded_text_register"
         android:ems="10"
         android:hint="@string/email_text_register"
@@ -45,7 +45,7 @@
         android:id="@+id/password_text_register"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/rounded_text_register"
         android:ems="10"
         android:hint="@string/password_text_register"
@@ -61,7 +61,7 @@
         android:id="@+id/register_button_register"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/rounded_button"
         android:text="@string/register_button_register"
         android:textStyle="bold"
@@ -88,12 +88,12 @@
         android:layout_height="150dp"
         android:background="@drawable/full_rounded_button"
         android:text="@string/selectphoto_imageview_register"
+        app:layout_constraintBottom_toBottomOf="@id/selectphoto_imageview_register"
         app:layout_constraintEnd_toEndOf="@id/selectphoto_imageview_register"
         app:layout_constraintStart_toStartOf="@id/selectphoto_imageview_register"
-        app:layout_constraintTop_toTopOf="@id/selectphoto_imageview_register"
-        app:layout_constraintBottom_toBottomOf="@id/selectphoto_imageview_register"/>
+        app:layout_constraintTop_toTopOf="@id/selectphoto_imageview_register" />
 
-<!--    <de.hdodenhof.circleimageview.CircleImageView
+    <!--    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/selectphoto_imageview_register"
         android:layout_width="150dp"
         android:layout_height="150dp"
@@ -117,6 +117,6 @@
         android:layout_marginRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
