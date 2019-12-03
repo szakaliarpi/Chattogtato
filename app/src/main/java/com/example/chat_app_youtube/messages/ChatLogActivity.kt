@@ -3,6 +3,7 @@ package com.example.chat_app_youtube.messages
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.chat_app_youtube.R
+import com.example.chat_app_youtube.models.User
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
@@ -15,22 +16,27 @@ class ChatLogActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_log)
 
-        supportActionBar?.title = "Chat log"
+
+        //val username = intent.getStringExtra(NewMessageActivity.USER_KEY) //set user name
+
+        val user = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY)
+        supportActionBar?.title = user.username
+
 
         val adapter = GroupAdapter<ViewHolder>()
 
-        adapter.add(ChatItem())
-        adapter.add(ChatItem())
-        adapter.add(ChatItem())
-        adapter.add(ChatItem())
-        adapter.add(ChatItem())
-        adapter.add(ChatItem())
+        adapter.add(ChatFromItem())
+        adapter.add(ChatToItem())
+        adapter.add(ChatFromItem())
+        adapter.add(ChatToItem())
+        adapter.add(ChatFromItem())
+        adapter.add(ChatToItem())
 
         recyclerview_chat_log.adapter = adapter
     }
 }
 //message blanks
-class ChatItem: Item<ViewHolder>(){
+class ChatFromItem: Item<ViewHolder>(){
 
     override fun bind(viewHolder: ViewHolder, position: Int) {
     }
@@ -41,4 +47,15 @@ class ChatItem: Item<ViewHolder>(){
 
     }
 }
-//20:15
+
+class ChatToItem: Item<ViewHolder>(){
+
+    override fun bind(viewHolder: ViewHolder, position: Int) {
+    }
+
+    override fun getLayout(): Int {
+
+        return R.layout.chat_to_row
+
+    }
+}

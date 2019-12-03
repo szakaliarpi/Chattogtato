@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#363E6D"
-    tools:context=".RegisterActivity">
+    tools:context=".register_login.RegisterActivity">
 
     <Button
         android:id="@+id/selectPhoto_button_register"

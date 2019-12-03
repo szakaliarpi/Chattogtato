@@ -1,10 +1,12 @@
-package com.example.chat_app_youtube
+package com.example.chat_app_youtube.messages
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcel
 import android.util.Log
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.chat_app_youtube.R
+import com.example.chat_app_youtube.register_login.User
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -21,7 +23,6 @@ class NewMessageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_message)
-        //16:13
         supportActionBar?.title = "Select User"
 
         /*val adapter =  GroupAdapter<ViewHolder>()
@@ -33,6 +34,10 @@ class NewMessageActivity : AppCompatActivity() {
         recyclerview_newmessage.adapter = adapter*/
 
         fetchUsers()
+    }
+
+    companion object{ //access the members of the class by class name only
+        val USER_KEY = "USER_KEY"
     }
 
     private fun fetchUsers(){
@@ -48,6 +53,18 @@ class NewMessageActivity : AppCompatActivity() {
                         adapter.add(UserItem(user))
                     }
 
+                }
+                //opening chat log activity which means the send message page
+                adapter.setOnItemClickListener { item, view ->
+
+                    val userItem = item as UserItem //cast - getting acces to the user object, used to name the chatlog who are you talking to
+
+                    val intent = Intent(view.context, ChatLogActivity::class.java)
+                    //intent.putExtra(USER_KEY, userItem.user.username)  we cant exactly put a user object inside of this method call
+                    intent.putExtra(USER_KEY, userItem.user)
+                    startActivity(intent)
+
+                    finish()
                 }
 
                 recyclerview_newmessage.adapter = adapter

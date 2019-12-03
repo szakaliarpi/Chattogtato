@@ -1,4 +1,4 @@
-package com.example.chat_app_youtube
+package com.example.chat_app_youtube.register_login
 
 import android.app.Activity
 import android.content.ContentValues
@@ -9,7 +9,10 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.chat_app_youtube.R
+import com.example.chat_app_youtube.messages.LatestMessagesActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -37,6 +40,8 @@ class RegisterActivity : AppCompatActivity() {
         alreadyHaveAccount_textView_register.setOnClickListener {
             Log.d("RegisterActivity", "Close registration activity")
             finish()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
 
         selectPhoto_button_register.setOnClickListener {
@@ -95,7 +100,7 @@ class RegisterActivity : AppCompatActivity() {
 
         if(email.isEmpty() || password.isEmpty()){
             Log.d("RegisterActivity", "Email or password is empty")
-            //Toast.makeText(this, "Please enter text in email/password", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Please enter text in email/password", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -110,14 +115,14 @@ class RegisterActivity : AppCompatActivity() {
 
                 //else if successful
                 Log.d("RegisterActivity", "Successfully created user with uid: ${it.result?.user?.uid}")
-                //Toast.makeText(this, "Successfully created user", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Successfully created user", Toast.LENGTH_SHORT).show()
 
                 uploadImageToFirebaseStorage()
             }
 
             .addOnFailureListener{
                 Log.d("RegisterActivity", "Failed to create user: ${it.message}")
-                //Toast.makeText(this, "Failed to create user: ${it.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Failed to create user: ${it.message}", Toast.LENGTH_SHORT).show()
                 return@addOnFailureListener
             }
 
@@ -159,7 +164,11 @@ class RegisterActivity : AppCompatActivity() {
         val uid = FirebaseAuth.getInstance().uid ?: " "
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
 
-        val user = User(uid, name_textBox_register.text.toString(), profileImageUrl)
+        val user = User(
+            uid,
+            name_textBox_register.text.toString(),
+            profileImageUrl
+        )
 
         ref.setValue(user)
             .addOnSuccessListener{
