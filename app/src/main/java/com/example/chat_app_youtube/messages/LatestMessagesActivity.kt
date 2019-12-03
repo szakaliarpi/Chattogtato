@@ -29,7 +29,7 @@ class LatestMessagesActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item?.itemId){
+        when (item.itemId){
             R.id.menu_new_message -> {
                 val intent = Intent(this,
                     NewMessageActivity::class.java)

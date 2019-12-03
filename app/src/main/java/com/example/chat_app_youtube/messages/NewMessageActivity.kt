@@ -6,7 +6,8 @@ import android.os.Bundle
 import android.os.Parcel
 import android.util.Log
 import com.example.chat_app_youtube.R
-import com.example.chat_app_youtube.register_login.User
+import com.example.chat_app_youtube.models.User
+//import com.example.chat_app_youtube.register_login.User
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
