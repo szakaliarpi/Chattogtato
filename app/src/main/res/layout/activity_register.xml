@@ -5,7 +5,7 @@
     android:id="@+id/name_app_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#363E6D"
+    android:background="#030303"
     tools:context=".register_login.RegisterActivity">
 
     <Button
