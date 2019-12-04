@@ -1,4 +1,4 @@
-package com.example.chat_app_youtube
+package com.example.chat_app
 
 import org.junit.Test
 

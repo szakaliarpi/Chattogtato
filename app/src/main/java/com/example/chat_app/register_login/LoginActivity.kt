@@ -1,4 +1,4 @@
-package com.example.chat_app_youtube.register_login
+package com.example.chat_app.register_login
 
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -7,7 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.example.chat_app_youtube.R
+import com.example.chat_app.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 

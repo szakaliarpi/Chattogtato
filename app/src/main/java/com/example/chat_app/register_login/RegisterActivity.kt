@@ -1,4 +1,4 @@
-package com.example.chat_app_youtube.register_login
+package com.example.chat_app.register_login
 
 import android.app.Activity
 import android.content.ContentValues
@@ -11,9 +11,9 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.chat_app_youtube.R
-import com.example.chat_app_youtube.messages.LatestMessagesActivity
-import com.example.chat_app_youtube.models.User
+import com.example.chat_app.R
+import com.example.chat_app.messages.LatestMessagesActivity
+import com.example.chat_app.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage

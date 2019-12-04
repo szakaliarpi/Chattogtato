@@ -1,12 +1,11 @@
-package com.example.chat_app_youtube.messages
+package com.example.chat_app.messages
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Parcel
 import android.util.Log
-import com.example.chat_app_youtube.R
-import com.example.chat_app_youtube.models.User
+import com.example.chat_app.R
+import com.example.chat_app.models.User
 //import com.example.chat_app_youtube.register_login.User
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

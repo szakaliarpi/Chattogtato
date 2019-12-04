@@ -1,12 +1,12 @@
-package com.example.chat_app_youtube.messages
+package com.example.chat_app.messages
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import com.example.chat_app_youtube.R
-import com.example.chat_app_youtube.register_login.RegisterActivity
+import com.example.chat_app.R
+import com.example.chat_app.register_login.RegisterActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class LatestMessagesActivity : AppCompatActivity() {
