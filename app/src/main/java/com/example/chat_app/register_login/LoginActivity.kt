@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.chat_app.R
+import com.example.chat_app.messages.LatestMessagesActivity
+import com.example.chat_app.messages.NewMessageActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -55,9 +57,16 @@ class LoginActivity: AppCompatActivity(){
                     Toast.makeText(this, "Couldn't login successfully", Toast.LENGTH_SHORT).show()
                     return@addOnCompleteListener
                 }
+                else{
+                    finish()
+                    val intent = Intent(this, LatestMessagesActivity::class.java)
+                    startActivity(intent)
 
-                Log.d("LoginActivity", "Login successfully")
-                Toast.makeText(this, "Login successfully", Toast.LENGTH_SHORT).show()
+                    Log.d("LoginActivity", "Login successfully")
+                    Toast.makeText(this, "Login successfully", Toast.LENGTH_SHORT).show()
+                }
+
+
             }
 
             .addOnFailureListener(){

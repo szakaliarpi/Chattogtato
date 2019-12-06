@@ -112,13 +112,17 @@ class RegisterActivity : AppCompatActivity() {
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
 
             .addOnCompleteListener {
-                if (!it.isSuccessful) return@addOnCompleteListener
+                if (!it.isSuccessful){
+                    return@addOnCompleteListener
+                }
 
-                //else if successful
-                Log.d("RegisterActivity", "Successfully created user with uid: ${it.result?.user?.uid}")
-                Toast.makeText(this, "Successfully created user", Toast.LENGTH_SHORT).show()
+                else {
+                    Log.d("RegisterActivity", "Successfully created user with uid: ${it.result?.user?.uid}")
+                    Toast.makeText(this, "Successfully created user", Toast.LENGTH_SHORT).show()
 
-                uploadImageToFirebaseStorage()
+                    uploadImageToFirebaseStorage()
+                }
+
             }
 
             .addOnFailureListener{
