@@ -11,11 +11,13 @@ import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_chat_log.*
-import kotlinx.android.synthetic.main.chat_from_row.view.textView
+import kotlinx.android.synthetic.main.chat_to_row.view.*
+import kotlinx.android.synthetic.main.user_row_new_message.view.*
 
 
 class ChatLogActivity : AppCompatActivity() {
@@ -59,18 +61,12 @@ class ChatLogActivity : AppCompatActivity() {
                     Log.d(TAG, chatMessage.text)
 
                     if(chatMessage.fromId == FirebaseAuth.getInstance().uid){
-                        adapter.add(
-                            ChatFromItem(
-                                chatMessage.text
-                            )
-                        ) //putting the messages onto the blanks
-                    }else{
-                        adapter.add(
-                            ChatToItem(
-                                chatMessage.text
-                            )
-                        ) // text on the right side as well
 
+                        adapter.add(ChatFromItem(chatMessage.text)) //putting the messages onto the blanks
+
+                    }else{
+                        val toUser = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY)
+                        adapter.add(ChatToItem(chatMessage.text, toUser)) // text on the right side as well
                     }
                 }
             }
@@ -82,6 +78,7 @@ class ChatLogActivity : AppCompatActivity() {
             override fun onChildChanged(p0: DataSnapshot, p1: String?) {
 
             }
+
 
             override fun onChildMoved(p0: DataSnapshot, p1: String?) {
 
@@ -99,9 +96,7 @@ class ChatLogActivity : AppCompatActivity() {
         val text = edittext_chat_log.text.toString()
 
         val fromId = FirebaseAuth.getInstance().uid
-        val user = intent.getParcelableExtra<User>(
-            NewMessageActivity.USER_KEY
-        )
+        val user = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY)
         val toId = user.uid
 
         if(fromId == null) return
@@ -121,20 +116,13 @@ class ChatLogActivity : AppCompatActivity() {
             }
     }
 
-    private fun setupDummyData(){
-        val adapter = GroupAdapter<ViewHolder>()
-
-        adapter.add(ChatFromItem("from messageeeeeeeeeee"))
-        adapter.add(ChatToItem("to messaggeeeeeeeeeeeee\ntomessss"))
-
-        recyclerview_chat_log.adapter = adapter
-    }
 }
     //message blanks, left side
     class ChatFromItem(val text: String): Item<ViewHolder>(){ //making this blank more dynamic with "text"
     override fun bind(viewHolder: ViewHolder, position: Int) {
         //access the actual ID with text view
-        viewHolder.itemView.textView.text = text
+        viewHolder.itemView.textView_chat_to_row.text = text
+        //viewHolder.itemView.`@+id/textView_chat_to_row`.text = text
     }
 
     override fun getLayout(): Int {
@@ -142,9 +130,15 @@ class ChatLogActivity : AppCompatActivity() {
     }
 }
 //right side of the activity
-class ChatToItem(val text: String): Item<ViewHolder>(){
+class ChatToItem(val text: String, val user:User): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
-        viewHolder.itemView.textView.text = text
+        viewHolder.itemView.textView_chat_to_row.text = text
+        //viewHolder.itemView.`@+id/textView_chat_to_row`.text = text
+
+        // load our user image into the star
+        val uri = user.profileImageUrl
+        val targetImageView = viewHolder.itemView.imageView_chat_to_row
+        Picasso.get().load(uri).into(targetImageView)
     }
 
     override fun getLayout(): Int {
