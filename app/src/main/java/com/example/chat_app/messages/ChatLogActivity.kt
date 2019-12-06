@@ -16,8 +16,9 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_chat_log.*
+import kotlinx.android.synthetic.main.chat_from_row.view.*
 import kotlinx.android.synthetic.main.chat_to_row.view.*
-import kotlinx.android.synthetic.main.user_row_new_message.view.*
+import kotlinx.android.synthetic.main.chat_to_row.view.textView_chat_tofrom_row
 
 
 class ChatLogActivity : AppCompatActivity() {
@@ -29,6 +30,8 @@ class ChatLogActivity : AppCompatActivity() {
 
     val adapter = GroupAdapter<ViewHolder>()
 
+    var toUser: User? = null
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,8 +40,8 @@ class ChatLogActivity : AppCompatActivity() {
 
         recyclerview_chat_log.adapter = adapter // allows adding object inside the adapter
 
-        val user = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY) //set username
-        supportActionBar?.title = user.username
+        toUser = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY) //set username
+        supportActionBar?.title = toUser?.username
 
         listenForMessages()
 
@@ -60,12 +63,12 @@ class ChatLogActivity : AppCompatActivity() {
                     Log.d(TAG, chatMessage.text)
 
                     if(chatMessage.fromId == FirebaseAuth.getInstance().uid){
+                        val currentUser = LatestMessagesActivity.currentUser ?: return
 
-                        adapter.add(ChatFromItem(chatMessage.text)) //putting the messages onto the blanks
+                        adapter.add(ChatFromItem(chatMessage.text, currentUser)) //putting the messages onto the blanks
 
                     }else{
-                        val toUser = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY)
-                        adapter.add(ChatToItem(chatMessage.text, toUser)) // text on the right side as well
+                        adapter.add(ChatToItem(chatMessage.text, toUser!!)) // text on the right side as well
                     }
                 }
             }
@@ -117,11 +120,15 @@ class ChatLogActivity : AppCompatActivity() {
 
 }
     //message blanks, left side
-    class ChatFromItem(val text: String): Item<ViewHolder>(){ //making this blank more dynamic with "text"
+    class ChatFromItem(val text: String, val user:User): Item<ViewHolder>(){ //making this blank more dynamic with "text"
     override fun bind(viewHolder: ViewHolder, position: Int) {
         //access the actual ID with text view
-        viewHolder.itemView.textView_chat_to_row.text = text
+        viewHolder.itemView.textView_chat_tofrom_row.text = text
         //viewHolder.itemView.`@+id/textView_chat_to_row`.text = text
+
+        val uri = user.profileImageUrl
+        val targetImageView = viewHolder.itemView.imageView_chat_from_row
+        Picasso.get().load(uri).into(targetImageView)
     }
 
     override fun getLayout(): Int {
@@ -131,7 +138,7 @@ class ChatLogActivity : AppCompatActivity() {
 //right side of the activity
 class ChatToItem(val text: String, val user:User): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
-        viewHolder.itemView.textView_chat_to_row.text = text
+        viewHolder.itemView.textView_chat_tofrom_row.text = text
         //viewHolder.itemView.`@+id/textView_chat_to_row`.text = text
 
         // load our user image into the star
