@@ -29,18 +29,17 @@ class ChatLogActivity : AppCompatActivity() {
 
     val adapter = GroupAdapter<ViewHolder>()
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_log)
 
         recyclerview_chat_log.adapter = adapter // allows adding object inside the adapter
 
-        val user = intent.getParcelableExtra<User>(
-            NewMessageActivity.USER_KEY
-        ) //set username
+        val user = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY) //set username
         supportActionBar?.title = user.username
 
-        //setupDummyData()
         listenForMessages()
 
         send_button_chat_log.setOnClickListener{
