@@ -1,2 +1,0 @@
-include ':app'
-rootProject.name='chat_app_youtube'
