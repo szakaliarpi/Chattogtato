@@ -31,7 +31,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         externalFileStoragePath = this.getExternalFilesDir(null).toString() + "/images/"
-        storageRef = FirebaseStorage.getInstance().getReference()
+        storageRef = FirebaseStorage.getInstance().reference
         selectPhoto_button_register.visibility = View.VISIBLE
 
         register_button_register.setOnClickListener {
@@ -54,7 +54,7 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    final var TAG: String = "RegisterActivity"
+    var TAG: String = "RegisterActivity"
     var selectedPhotoUri: Uri? = null
     var externalFileStoragePath: String = ""
     var storageRef: StorageReference? = null
@@ -183,7 +183,7 @@ class RegisterActivity : AppCompatActivity() {
                 startActivity(intent)
             }
 
-            .addOnFailureListener(){
+            .addOnFailureListener {
                 Log.d("RegisterActivity", "Failed to save data in Firebase database")
             }
     }
@@ -200,7 +200,7 @@ class RegisterActivity : AppCompatActivity() {
             values.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis())
             values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
             values.put(MediaStore.MediaColumns.DATA, toFile.toString() + "/" + toFileName)
-            this.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+            this.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
         } catch (e: IOException) {
             e.printStackTrace()
         }

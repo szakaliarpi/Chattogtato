@@ -16,6 +16,7 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_chat_log.*
+import kotlinx.android.synthetic.main.activity_latest_messages.*
 import kotlinx.android.synthetic.main.chat_from_row.view.*
 import kotlinx.android.synthetic.main.chat_to_row.view.*
 import kotlinx.android.synthetic.main.chat_to_row.view.textView_chat_tofrom_row
@@ -125,11 +126,18 @@ class ChatLogActivity : AppCompatActivity() {
                 recyclerview_chat_log.scrollToPosition(adapter.itemCount - 1)
             }
         toReference.setValue(chatMessage)
+
+        val latestMessageRef = FirebaseDatabase.getInstance().getReference("/latest-messages/$fromId/$toId") //creating latest messages into firebase
+        latestMessageRef.setValue(chatMessage)
+
+        val latestMessageToRef = FirebaseDatabase.getInstance().getReference("/latest-messages/$toId/$fromId") //creating latest messages into firebase
+        latestMessageToRef.setValue(chatMessage)
     }
 
 }
     //message blanks, left side
-    class ChatFromItem(val text: String, val user:User): Item<ViewHolder>(){ //making this blank more dynamic with "text"
+
+class ChatFromItem(val text: String, val user:User): Item<ViewHolder>(){ //making this blank more dynamic with "text"
     override fun bind(viewHolder: ViewHolder, position: Int) {
         //access the actual ID with text view
         viewHolder.itemView.textView_chat_tofrom_row.text = text
