@@ -80,20 +80,16 @@ class ChatLogActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(p0: DatabaseError) {
-
+                //TODO
             }
-
             override fun onChildChanged(p0: DataSnapshot, p1: String?) {
-
+                //TODO
             }
-
-
             override fun onChildMoved(p0: DataSnapshot, p1: String?) {
-
+                //TODO
             }
-
             override fun onChildRemoved(p0: DataSnapshot) {
-
+                //TODO
             }
             })
     }
