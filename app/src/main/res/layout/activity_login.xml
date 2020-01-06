@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/name_app_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="#FFFFFF"
     tools:context="com.example.chat_app.register_login.LoginActivity">
 
     <EditText
         android:id="@+id/email_textBox_login"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_width="260dp"
+        android:layout_height="52dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="32dp"
-        android:background="@drawable/rounded_text_register"
+        android:background="#1D000000"
         android:ems="10"
         android:hint="@string/email_text_login"
         android:importantForAutofill="no"
         android:inputType="textEmailAddress"
         android:paddingStart="20sp"
+        android:textColorHint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,12 +32,13 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="32dp"
-        android:background="@drawable/rounded_text_register"
+        android:background="#1D000000"
         android:ems="10"
         android:hint="@string/password_text_login"
         android:importantForAutofill="no"
         android:inputType="textPassword"
         android:paddingStart="20sp"
+        android:textColorHint="#000000"
         app:layout_constraintEnd_toEndOf="@+id/email_textBox_login"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/email_textBox_login"
@@ -45,13 +46,12 @@
 
     <Button
         android:id="@+id/login_button_login"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="260dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/rounded_button"
         android:text="@string/login_button_login"
         app:layout_constraintEnd_toEndOf="@+id/password_textBox_login"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/password_textBox_login"
         app:layout_constraintTop_toBottomOf="@+id/password_textBox_login" />
 
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/goToRegister_text_login"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/login_button_login"
